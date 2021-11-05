@@ -28,7 +28,7 @@ Criar um site que contenha os seguintes elementos:
   - Media de avaliações;
   - Possibilidade de colocar como favorito;
 
-- O layout a ser seguido se encontra nesse link [figma](https://kitsu.docs.apiary.io)
+- O layout a ser seguido se encontra nesse link [figma](https://www.figma.com/file/DoHcQ1PKnpYoj6kAYiKI2Q/Teste?node-id=134%3A607)
 
 ## Regras
 
