@@ -1,0 +1,59 @@
+.animeRow {
+  margin-bottom: 30px;
+}
+.animeRow h2 {
+  margin: 0px 0px 0px 30px;
+}
+.animeRow--listarea {
+  overflow-x: hidden;
+  padding-left: 30px;
+}
+.animeRow--list {
+  transition: all ease 0.3s;
+}
+
+.animeRow--item {
+  display: inline-block;
+  width: 150px;
+  cursor: pointer;
+}
+.animeRow--item img {
+  width: 100%;
+  transform: scale(0.9);
+  transition: all ease 0.2s;
+}
+.animeRow--item img:hover {
+  transform: scale(1);
+}
+
+.animeRow--left,
+.animeRow--right {
+  position: absolute;
+  width: 40px;
+  height: 225px;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  cursor: pointer;
+  opacity: 0;
+  transition: all ease 0.5s;
+}
+.animeRow--left {
+  left: 0;
+}
+.animeRow--right {
+  right: 0;
+}
+.animeRow:hover .animeRow--left,
+.animeRow:hover .animeRow--right {
+  opacity: 1;
+}
+@media (max-width: 760px) {
+  .animeRow--left,
+  .animeRow--right {
+    opacity: 1;
+  }
+}
