@@ -1,59 +1,35 @@
-.animeRow {
-  margin-bottom: 30px;
-}
-.animeRow h2 {
-  margin: 0px 0px 0px 30px;
-}
-.animeRow--listarea {
-  overflow-x: hidden;
-  padding-left: 30px;
-}
-.animeRow--list {
-  transition: all ease 0.3s;
+.container-animes {
+  display: flex;
+  flex-wrap: wrap;
+  width: 1300px;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  padding: 100px;
 }
 
-.animeRow--item {
-  display: inline-block;
-  width: 150px;
+.anime-row__item {
+  display: flex;
+  width: 142px;
+  height: 230px;
+  margin: 10px 15px;
   cursor: pointer;
 }
-.animeRow--item img {
+
+.anime-row__item img {
   width: 100%;
   transform: scale(0.9);
   transition: all ease 0.2s;
 }
-.animeRow--item img:hover {
+
+.anime-row__item img:hover {
   transform: scale(1);
 }
 
-.animeRow--left,
-.animeRow--right {
-  position: absolute;
-  width: 40px;
-  height: 225px;
-  background-color: rgba(0, 0, 0, 0.6);
-  z-index: 99;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  cursor: pointer;
-  opacity: 0;
-  transition: all ease 0.5s;
+.out-modal {
+  z-index: -1;
 }
-.animeRow--left {
-  left: 0;
-}
-.animeRow--right {
-  right: 0;
-}
-.animeRow:hover .animeRow--left,
-.animeRow:hover .animeRow--right {
-  opacity: 1;
-}
-@media (max-width: 760px) {
-  .animeRow--left,
-  .animeRow--right {
-    opacity: 1;
-  }
+
+.invisible {
+  display: none;
 }

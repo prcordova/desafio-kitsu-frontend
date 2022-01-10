@@ -8,6 +8,8 @@ import Header from "./components/Header";
 
 function App() {
   const [data, setData] = useState([] as any);
+  const [searchValue, setSearchValue] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     getAnimeList();
@@ -16,29 +18,26 @@ function App() {
   async function getAnimeList() {
     await getAnimes()
       .then((response) => {
-        console.log(response.data.data);
         setData(response.data.data);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       })
       .finally(() => {
-        console.log(data);
+        setLoading(false);
       });
   }
 
+  const setLoading = (isLoading: boolean) => {
+    setIsLoading(isLoading);
+  };
+
   return (
-    <>
-      <div className="page">
-        <Header />
-        <section className="lists">
-          {data.map(() => (
-            <AnimeRow />
-          ))}
-        </section>
-      </div>
+    <div className="page">
+      <Header />
+      <AnimeRow animes={data} />
       <Footer />
-    </>
+    </div>
   );
 }
 

@@ -8,6 +8,12 @@ const http = axios.create({
   },
 });
 
+const filter = "?page[limit]=19";
+
 export const getAnimes = () => {
-  return http.get("anime");
+  return http.get(`anime${filter}`);
+};
+
+export const getAnime = (id: number) => {
+  return http.get(`anime/${id}`);
 };

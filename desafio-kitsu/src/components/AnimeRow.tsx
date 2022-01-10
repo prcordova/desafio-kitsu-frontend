@@ -1,60 +1,56 @@
 import React, { useEffect, useState } from "react";
 import { getAnimes } from "../services/api";
+import { Modal } from "../components/Modal/Modal";
+import { Anime } from "./models/Anime";
 
 import "./AnimeRow.css";
 import "../App.css";
 
-const AnimeList = () => {
-  const [data, setData] = useState([] as any);
+const AnimeList = (data: Anime) => {
+  const [animes, setAnimes] = useState([] as any);
+  const [selectedId, setSelectedId] = useState(0);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   useEffect(() => {
-    getAnimeList();
-  }, []);
+    setAnimes(data.animes);
+    console.log(data);
+  }, [data.animes]);
 
-  async function getAnimeList() {
-    await getAnimes()
-      .then((response) => {
-        console.log(response.data.data);
-        setData(response.data.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-      .finally(() => {
-        console.log(data);
-      });
-  }
+  const handleModal = (isVisible: boolean, id: number = 0) => {
+    setSelectedId(id);
+    setIsModalVisible(isVisible);
+  };
 
   return (
     <>
-      <section className="lists">
-        <div className="animeRow">
-          <h2>Titulo teste</h2>
-          <div className="animeRow--left">
-            <h1>Left</h1>
+      <div className="container ">
+        {isModalVisible && (
+          <div
+            className={isModalVisible ? "out-modal" : "invisible"}
+            onClick={() => {
+              handleModal(false);
+            }}
+          >
+            <Modal id={selectedId} />
           </div>
-          <div className="animeRow--right">
-            <h1>Right</h1>
-          </div>
-          <div className="animeRow--listarea">
-            <div className="animeRow--list">
-              {data.map((anime: any) => (
-                <div key={anime.id}>
-                  <div className="animeRow--listarea">
-                    <div>
-                      <div className="animeRow--item">
-                        <img src={anime.attributes.coverImage?.original} />
-                      </div>
+        )}
+        <h1>Animes mais populares</h1>
+        <div className="container-animes">
+          {animes?.map((anime: any) => (
+            <div
+              className="anime-row__item"
+              key={anime.id}
+              onClick={() => {
+                handleModal(true, anime.id);
+              }}
+            >
+              <img src={anime.attributes.coverImage?.original} />
 
-                      <p>{anime?.results?.slug}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
+              {/* <p>{anime?.attributes?.slug}</p> */}
             </div>
-          </div>
+          ))}
         </div>
-      </section>
+      </div>
     </>
   );
 };
